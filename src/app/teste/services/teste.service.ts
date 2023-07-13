@@ -5,7 +5,7 @@ import { Produto } from '../model/teste.produto';
 import { Usuario } from '../model/teste.usuario';
 import { loginResponse } from './dto/login.response';
 
-const baseUrl = 'http://localhost:8080/api/';
+const baseUrl = 'http://localhost:8080/api';
 
 @Injectable({
   providedIn: 'root'

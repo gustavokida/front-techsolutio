@@ -8,6 +8,7 @@ import { TesteLoginComponent } from './teste/teste-login/teste-login.component';
 import { TesteCadastroComponent } from './teste/teste-cadastro/teste-cadastro.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     RouterModule,
     HttpClientModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Produto } from '../model/teste.produto';
 import { TesteService } from '../services/teste.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-teste-cadastro',
@@ -17,25 +18,40 @@ export class TesteCadastroComponent implements OnInit{
     this.testeService.getAllProdutos().subscribe(res => {
       this.produtos = res;
     });
-    this.produtos.push({id: 1, idMongo: '1',nomeProduto: 'abc', fornecedor: 'abc', valorProduto: 0})
+  }
+
+  handleProduto(form: NgForm): void{
+    let produto: Produto = form.value;
+    let tipoBotao: any = produto.tipoBotao
+    delete produto.tipoBotao;
+    if(tipoBotao == null){
+    }
+    else if(tipoBotao == '1'){
+      this.addProduto(produto)
+    }
+    else if(tipoBotao == '2'){
+      this.updateProduto(produto)
+    }
+    else{
+      this.deleteProduto(produto.id)
+    }
+    
   }
   
 
-  addProduto(novoProduto: Produto): void {
-    this.testeService.createProduto({
-      nomeProduto: novoProduto.nomeProduto,
-      fornecedor: novoProduto.fornecedor,
-      valorProduto: novoProduto.valorProduto
-    }).subscribe(
-      res => {
-        this.produtos = res;
+  addProduto(produto: Produto): void {
+    delete produto.id
+    this.testeService.createProduto(produto)
+    .subscribe(
+      (res:Produto) => {
+        this.newProduto = res;
+        console.log(this.newProduto)
     });
   }
 
   updateProduto(produto: Produto): void {
     this.testeService.updateProduto({
       id: produto.id,
-      idMongo: produto.idMongo,
       nomeProduto: produto.nomeProduto,
       fornecedor: produto.fornecedor,
       valorProduto: produto.valorProduto
@@ -45,7 +61,16 @@ export class TesteCadastroComponent implements OnInit{
       });
   }
 
-  deleteProduto(produtoId: String): void {
-    this.testeService.deleteProduto(produtoId).subscribe();
+  deleteProduto(produtoId?: String): void {
+    if(produtoId != null){
+      this.testeService.deleteProduto(produtoId).subscribe();
+    }
   }
+
+
+  deslogarUsuario():void{
+    localStorage.setItem('autenticado', 'false');
+    console.log("deslogado com sucesso")
+  }
+    
 }

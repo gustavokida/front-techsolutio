@@ -1,28 +1,65 @@
-<a routerLink="/login">logout</a>
-<div>Lista de Produtos</div>
-<table class="table align-middle mb-0 bg-white">
-    <thead class="bg-light">
-      <tr>
-        <th>Id</th>
-        <th>Id Mongo</th>
-        <th>Nome do Produto</th>
-        <th>Fornecedor</th>
-        <th>Valor do Produto</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let produto of produtos">
-        <td>{{ produto.id }}</td>
-        <td>{{ produto.idMongo }}</td>
-        <td>{{ produto.nomeProduto }}</td>
-        <td>{{ produto.fornecedor }}</td>
-        <td>{{ produto.valorProduto }}</td>
-        <button type="button" class="btn btn-link btn-sm btn-rounded">
-            Editar
-          </button>
-          <button type="button" class="btn btn-link btn-sm btn-rounded">
-            Remover
-          </button>
-        </tr>
-    </tbody>
-  </table>
+<a routerLink="/login" (click)="deslogarUsuario()">logout</a>
+<br>
+<br>
+<br>
+<div>
+    <div>Cadastrar Produto</div>
+    <form #produtoform="ngForm" (ngSubmit)="handleProduto(produtoform)">
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingInput" placeholder="Id"
+                [(ngModel)]="newProduto.id" name="id">
+            <label for="floatingInput">Id (Coloque o Id para atualizar/excluir)</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingInput" placeholder="Nome do produto"
+                [(ngModel)]="newProduto.nomeProduto" name="nomeProduto">
+            <label for="floatingInput">nome do produto</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingInput" placeholder="Fornecedor"
+                [(ngModel)]="newProduto.fornecedor" name="fornecedor">
+            <label for="floatingInput">Fornecedor</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingInput" placeholder="Valor do produto"
+                [(ngModel)]="newProduto.valorProduto" name="valorProduto">
+            <label for="floatingInput">Valor do produto</label>
+        </div>
+        <div class="d-grid">
+            <button class="btn btn-link btn-sm btn-rounded" type="submit" ng-model="newProduto.tipoBotao" ng-click="newProduto.tipoBotao='1'">
+                Cadastrar
+            </button>
+            <button type="submit" class="btn btn-link btn-sm btn-rounded" ng-model="newProduto.tipoBotao" ng-click="newProduto.tipoBotao='2'">
+                Editar
+            </button>
+            <button type="submit" class="btn btn-link btn-sm btn-rounded" ng-model="newProduto.tipoBotao" ng-click="newProduto.tipoBotao='3'">
+                Remover
+            </button>
+        </div>
+        
+    </form>
+</div>
+<br>
+<br>
+<div>
+    <div>Lista de Produtos</div>
+    <table class="table align-middle mb-0 bg-white">
+        <thead class="bg-light">
+            <tr>
+                <th>Id</th>
+                <th>Nome do Produto</th>
+                <th>Fornecedor</th>
+                <th>Valor do Produto</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let produto of produtos">
+                <td>{{ produto.id }}</td>
+                <td>{{ produto.nomeProduto }}</td>
+                <td>{{ produto.fornecedor }}</td>
+                <td>{{ produto.valorProduto }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+

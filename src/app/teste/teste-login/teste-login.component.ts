@@ -1,6 +1,10 @@
+import { loginResponse } from './../services/dto/login.response';
 import { Usuario } from './../model/teste.usuario';
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { TesteService } from 'src/app/teste/services/teste.service';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-teste-login',
@@ -8,23 +12,47 @@ import { TesteService } from 'src/app/teste/services/teste.service';
   styleUrls: ['./teste-login.component.scss']
 })
 export class TesteLoginComponent implements OnInit{
-  Usuario?: Usuario[];
+  usuario: Usuario[] = [];
   newUsuario: Usuario = {username: '', password: ''}
+  response: loginResponse = {id: ''}
 
-  constructor(private testeService: TesteService) {}
+  subscription: Subscription;
+
+  constructor(private testeService: TesteService, private router: Router) {
+    this.subscription = new Subscription();
+  }
+  
 
   ngOnInit(): void {
   }
 
-  logarUsuario(usuario: Usuario): void{
-    this.testeService.login({
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
+  logarUsuario(form: NgForm): void{
+    console.log(form)
+    var usuario: Usuario = form.value
+    console.log(usuario)
+    this.subscription = this.testeService.login({
       username: usuario.username,
       password: usuario.password
-    })
+    }).subscribe(
+      (res: loginResponse) => {
+      this.response.id = res.id;
+      console.log(this.response);
+      this.validaLogin(this.response);
+      });
   }
 
-  deslogarUsuario():void{
+  validaLogin(response: loginResponse){
+    if (response.id != '') {
+      this.router.navigate(['/cadastro']);
+      localStorage.setItem('autenticado', 'true');
+    } else {
+      console.log('Login failed');
+    }
   }
-
 
 }
+

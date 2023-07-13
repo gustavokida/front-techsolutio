@@ -1,7 +1,7 @@
 export interface Produto {
-  id?: number;
-  idMongo?: string;
+  id?: string;
   nomeProduto: string;
   fornecedor: string;
   valorProduto: number;
-  }
+  tipoBotao?: String;
+}

@@ -1,11 +1,11 @@
 <div>
-    <form>
+    <form #usuarioform = "ngForm" (ngSubmit) = "logarUsuario(usuarioform)">
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="floatingInput" placeholder="Username">
+            <input type="text" class="form-control" id="floatingInput" placeholder="Username" [(ngModel)]="newUsuario.username" name = "username">
             <label for="floatingInput">Username</label>
         </div>
         <div class="form-floating mb-3">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" [(ngModel)]="newUsuario.password" name = "password" >
             <label for="floatingPassword">Password</label>
         </div>
         <div class="d-grid">
