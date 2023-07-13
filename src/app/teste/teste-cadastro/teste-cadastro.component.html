@@ -1,16 +1,28 @@
-<table>
-  <thead>
-    <tr>
-      <th>Column 1</th>
-      <th>Column 2</th>
-      <th>Column 3</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let produto of produtos">
-      <td>{{ produto.nomeProduto }}</td>
-      <td>{{ produto.fornecedor }}</td>
-      <td>{{ produto.valorProduto }}</td>
-    </tr>
-  </tbody>
-</table>
+<a routerLink="/login">logout</a>
+<div>Lista de Produtos</div>
+<table class="table align-middle mb-0 bg-white">
+    <thead class="bg-light">
+      <tr>
+        <th>Id</th>
+        <th>Id Mongo</th>
+        <th>Nome do Produto</th>
+        <th>Fornecedor</th>
+        <th>Valor do Produto</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let produto of produtos">
+        <td>{{ produto.id }}</td>
+        <td>{{ produto.idMongo }}</td>
+        <td>{{ produto.nomeProduto }}</td>
+        <td>{{ produto.fornecedor }}</td>
+        <td>{{ produto.valorProduto }}</td>
+        <button type="button" class="btn btn-link btn-sm btn-rounded">
+            Editar
+          </button>
+          <button type="button" class="btn btn-link btn-sm btn-rounded">
+            Remover
+          </button>
+        </tr>
+    </tbody>
+  </table>

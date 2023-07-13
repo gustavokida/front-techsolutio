@@ -7,6 +7,7 @@ import { TesteComponent } from './teste/teste.component';
 import { TesteLoginComponent } from './teste/teste-login/teste-login.component';
 import { TesteCadastroComponent } from './teste/teste-cadastro/teste-cadastro.component';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { RouterModule } from '@angular/router';
     BrowserModule,
     AppRoutingModule,
     RouterModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

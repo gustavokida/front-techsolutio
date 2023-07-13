@@ -8,7 +8,7 @@ import { TesteService } from '../services/teste.service';
   styleUrls: ['./teste-cadastro.component.scss']
 })
 export class TesteCadastroComponent implements OnInit{  
-  produtos?: Produto[];
+  produtos: Produto[] =[];
   newProduto: Produto = {nomeProduto: '', fornecedor: '', valorProduto: 0}
 
   constructor(private testeService: TesteService) {}
@@ -17,7 +17,7 @@ export class TesteCadastroComponent implements OnInit{
     this.testeService.getAllProdutos().subscribe(res => {
       this.produtos = res;
     });
-    
+    this.produtos.push({id: 1, idMongo: '1',nomeProduto: 'abc', fornecedor: 'abc', valorProduto: 0})
   }
   
 

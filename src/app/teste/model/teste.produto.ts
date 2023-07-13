@@ -1,7 +1,7 @@
-export class Produto {
-    id?: number;
-    idMongo?: string;
-    nomeProduto?: string;
-    fornecedor?: string;
-    valorProduto?: number;
+export interface Produto {
+  id?: number;
+  idMongo?: string;
+  nomeProduto: string;
+  fornecedor: string;
+  valorProduto: number;
   }

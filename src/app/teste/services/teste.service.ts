@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Produto } from '../model/teste.produto';
 import { Usuario } from '../model/teste.usuario';
+import { loginResponse } from './dto/login.response';
 
 const baseUrl = 'http://localhost:8080/api/';
 
@@ -13,8 +14,8 @@ export class TesteService {
 
   constructor(private http: HttpClient) { }
 
-  login(data: Usuario): Observable<any> {
-    return this.http.post(`${baseUrl}/login`, data);
+  login(data: Usuario): Observable<loginResponse> {
+    return this.http.post<loginResponse>(`${baseUrl}/login`, data);
   }
 
   createUsuario(data: Usuario): Observable<any> {
