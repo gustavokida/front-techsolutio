@@ -31,9 +31,7 @@ export class TesteLoginComponent implements OnInit{
   }
 
   logarUsuario(form: NgForm): void{
-    console.log(form)
     var usuario: Usuario = form.value
-    console.log(usuario)
     this.subscription = this.testeService.login({
       username: usuario.username,
       password: usuario.password
@@ -43,6 +41,20 @@ export class TesteLoginComponent implements OnInit{
       console.log(this.response);
       this.validaLogin(this.response);
       });
+  }
+
+  criarUsuario(form: NgForm): void{
+    var usuario: Usuario = form.value
+    this.subscription = this.testeService.createUsuario({
+      username: usuario.username,
+      password: usuario.password
+    }).subscribe(
+      (res:loginResponse) => {
+        this.response.id = res.id;
+        console.log(this.response)
+        this.validaLogin(this.response);
+      }
+    )
   }
 
   validaLogin(response: loginResponse){

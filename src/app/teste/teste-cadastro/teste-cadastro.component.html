@@ -4,12 +4,7 @@
 <br>
 <div>
     <div>Cadastrar Produto</div>
-    <form #produtoform="ngForm" (ngSubmit)="handleProduto(produtoform)">
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="floatingInput" placeholder="Id"
-                [(ngModel)]="newProduto.id" name="id">
-            <label for="floatingInput">Id (Coloque o Id para atualizar/excluir)</label>
-        </div>
+    <form #produtoform="ngForm" (ngSubmit)="addProduto(produtoform)">
         <div class="form-floating mb-3">
             <input type="text" class="form-control" id="floatingInput" placeholder="Nome do produto"
                 [(ngModel)]="newProduto.nomeProduto" name="nomeProduto">
@@ -26,17 +21,10 @@
             <label for="floatingInput">Valor do produto</label>
         </div>
         <div class="d-grid">
-            <button class="btn btn-link btn-sm btn-rounded" type="submit" ng-model="newProduto.tipoBotao" ng-click="newProduto.tipoBotao='1'">
+            <button class="btn btn-link btn-sm btn-rounded" type="submit">
                 Cadastrar
             </button>
-            <button type="submit" class="btn btn-link btn-sm btn-rounded" ng-model="newProduto.tipoBotao" ng-click="newProduto.tipoBotao='2'">
-                Editar
-            </button>
-            <button type="submit" class="btn btn-link btn-sm btn-rounded" ng-model="newProduto.tipoBotao" ng-click="newProduto.tipoBotao='3'">
-                Remover
-            </button>
         </div>
-        
     </form>
 </div>
 <br>
@@ -55,9 +43,17 @@
         <tbody>
             <tr *ngFor="let produto of produtos">
                 <td>{{ produto.id }}</td>
-                <td>{{ produto.nomeProduto }}</td>
-                <td>{{ produto.fornecedor }}</td>
-                <td>{{ produto.valorProduto }}</td>
+                <td><input type="text" [(ngModel)]="produto.nomeProduto"  [disabled]="!produto.isEditable"></td>
+                <td><input type="text" [(ngModel)]="produto.fornecedor"  [disabled]="!produto.isEditable"></td>
+                <td><input type="text" [(ngModel)]="produto.valorProduto"  [disabled]="!produto.isEditable"></td>
+                <button (click)="produto.isEditable=!produto.isEditable" *ngIf="!produto.isEditable">Editar</button>
+                <button (click)="produto.isEditable=!produto.isEditable" *ngIf="produto.isEditable">Cancelar</button>
+                <button type="submit" class="btn btn-link btn-sm btn-rounded" (click)="updateProduto(produto)" (click)="produto.isEditable=!produto.isEditable" *ngIf="produto.isEditable">
+                    Salvar
+                </button>
+                <button type="submit" class="btn btn-link btn-sm btn-rounded" (click)="deleteProduto(produto.id)">
+                    Remover
+                </button>
             </tr>
         </tbody>
     </table>

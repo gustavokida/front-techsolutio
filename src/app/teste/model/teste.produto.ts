@@ -3,5 +3,5 @@ export interface Produto {
   nomeProduto: string;
   fornecedor: string;
   valorProduto: number;
-  tipoBotao?: String;
+  isEditable?: boolean;
 }

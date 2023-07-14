@@ -18,8 +18,8 @@ export class TesteService {
     return this.http.post<loginResponse>(`${baseUrl}/login`, data);
   }
 
-  createUsuario(data: Usuario): Observable<any> {
-    return this.http.post(`${baseUrl}/criar-usuario`, data);
+  createUsuario(data: Usuario): Observable<loginResponse> {
+    return this.http.post<loginResponse>(`${baseUrl}/criar-usuario`, data);
   }
 
   getAllProdutos(): Observable<Produto[]> {
@@ -30,8 +30,8 @@ export class TesteService {
     return this.http.post(`${baseUrl}/cadastro`, data);
   }
 
-  updateProduto(data: Produto): Observable<any> {
-    return this.http.put(`${baseUrl}/cadastro`, data);
+  updateProduto(data: Produto): Observable<Produto> {
+    return this.http.put<Produto>(`${baseUrl}/cadastro`, data);
   }
 
   deleteProduto(id: String): Observable<any> {

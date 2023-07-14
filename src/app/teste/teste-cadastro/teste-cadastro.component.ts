@@ -17,30 +17,14 @@ export class TesteCadastroComponent implements OnInit{
   ngOnInit(): void {
     this.testeService.getAllProdutos().subscribe(res => {
       this.produtos = res;
+      for(let produto of this.produtos){
+        produto.isEditable = false;
+      }
     });
   }
 
-  handleProduto(form: NgForm): void{
+  addProduto(form: NgForm): void {
     let produto: Produto = form.value;
-    let tipoBotao: any = produto.tipoBotao
-    delete produto.tipoBotao;
-    if(tipoBotao == null){
-    }
-    else if(tipoBotao == '1'){
-      this.addProduto(produto)
-    }
-    else if(tipoBotao == '2'){
-      this.updateProduto(produto)
-    }
-    else{
-      this.deleteProduto(produto.id)
-    }
-    
-  }
-  
-
-  addProduto(produto: Produto): void {
-    delete produto.id
     this.testeService.createProduto(produto)
     .subscribe(
       (res:Produto) => {
@@ -57,7 +41,7 @@ export class TesteCadastroComponent implements OnInit{
       valorProduto: produto.valorProduto
     }).subscribe(
       res => {
-        this.produtos = res;
+        console.log(res)
       });
   }
 
