@@ -31,7 +31,7 @@ export class TesteLoginComponent implements OnInit{
   }
 
   logarUsuario(form: NgForm): void{
-    var usuario: Usuario = form.value
+    let usuario: Usuario = form.value
     this.subscription = this.testeService.login({
       username: usuario.username,
       password: usuario.password
@@ -44,7 +44,7 @@ export class TesteLoginComponent implements OnInit{
   }
 
   criarUsuario(form: NgForm): void{
-    var usuario: Usuario = form.value
+    let usuario: Usuario = form.value
     this.subscription = this.testeService.createUsuario({
       username: usuario.username,
       password: usuario.password

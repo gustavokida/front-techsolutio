@@ -1,0 +1,87 @@
+// Variables
+$form-background: #f9f9f9;
+$form-border-color: #cac9c9;
+$form-field-padding: 12px;
+$form-width: 500px;
+$form-field-border-radius: 4px;
+$form-field-border-width: 1px;
+$form-field-font-size: 16px;
+
+// Form Styles
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Set the height of the container to the full viewport height */
+  }
+.form {
+  background-color: $form-background;
+  border: 1px solid $form-border-color;
+  padding: 20px;
+  border-radius: $form-field-border-radius;
+  width: $form-width;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+
+  &.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+
+  .form-fields {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+
+  .form-fields .form-field {
+    flex: 1 1 300px;
+    margin-right: 10px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    display: block;
+    width: 95%;
+    padding: $form-field-padding;
+    border: $form-field-border-width solid $form-border-color;
+    border-radius: $form-field-border-radius;
+    font-size: $form-field-font-size;
+
+    &:focus {
+      outline: none;
+      border-color: $form-border-color;
+      box-shadow: 0 0 5px $form-border-color;
+    }
+  }
+
+  button[type="submit"],
+  button[type="button"] {
+    display: inline-block;
+    padding: $form-field-padding;
+    border: none;
+    border-radius: $form-field-border-radius;
+    font-size: $form-field-font-size;
+    font-weight: bold;
+    background-color: $form-border-color;
+    color: #fff;
+    width: 100%;
+    cursor: pointer;
+    margin-bottom: 1%;
+    margin-left: 3%;
+
+    &:hover {
+      background-color: darken($form-border-color, 10%);
+    }
+  }
+}

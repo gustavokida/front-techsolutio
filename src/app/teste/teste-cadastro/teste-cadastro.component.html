@@ -1,24 +1,28 @@
-<a routerLink="/login" (click)="deslogarUsuario()">logout</a>
+<nav class="navbar">
+    <a class="navbar-brand" href="#">Produtos</a>
+    <a class="navbar-link" routerLink="/login" (click)="deslogarUsuario()">logout</a>
+</nav>
 <br>
 <br>
 <br>
 <div>
-    <div>Cadastrar Produto</div>
-    <form #produtoform="ngForm" (ngSubmit)="addProduto(produtoform)">
+
+    <form class="form fields" #produtoform="ngForm" (ngSubmit)="addProduto(produtoform)">
+        <div>Cadastrar Produto</div>
         <div class="form-floating mb-3">
             <input type="text" class="form-control" id="floatingInput" placeholder="Nome do produto"
                 [(ngModel)]="newProduto.nomeProduto" name="nomeProduto">
-            <label for="floatingInput">nome do produto</label>
+            <label for="floatingInput"></label>
         </div>
         <div class="form-floating mb-3">
             <input type="text" class="form-control" id="floatingInput" placeholder="Fornecedor"
                 [(ngModel)]="newProduto.fornecedor" name="fornecedor">
-            <label for="floatingInput">Fornecedor</label>
+            <label for="floatingInput"></label>
         </div>
         <div class="form-floating mb-3">
             <input type="text" class="form-control" id="floatingInput" placeholder="Valor do produto"
                 [(ngModel)]="newProduto.valorProduto" name="valorProduto">
-            <label for="floatingInput">Valor do produto</label>
+            <label for="floatingInput"></label>
         </div>
         <div class="d-grid">
             <button class="btn btn-link btn-sm btn-rounded" type="submit">
@@ -30,32 +34,37 @@
 <br>
 <br>
 <div>
-    <div>Lista de Produtos</div>
-    <table class="table align-middle mb-0 bg-white">
+
+    <table class="table">
         <thead class="bg-light">
             <tr>
                 <th>Id</th>
                 <th>Nome do Produto</th>
                 <th>Fornecedor</th>
                 <th>Valor do Produto</th>
+                <th>Ações</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let produto of produtos">
                 <td>{{ produto.id }}</td>
-                <td><input type="text" [(ngModel)]="produto.nomeProduto"  [disabled]="!produto.isEditable"></td>
-                <td><input type="text" [(ngModel)]="produto.fornecedor"  [disabled]="!produto.isEditable"></td>
-                <td><input type="text" [(ngModel)]="produto.valorProduto"  [disabled]="!produto.isEditable"></td>
-                <button (click)="produto.isEditable=!produto.isEditable" *ngIf="!produto.isEditable">Editar</button>
-                <button (click)="produto.isEditable=!produto.isEditable" *ngIf="produto.isEditable">Cancelar</button>
-                <button type="submit" class="btn btn-link btn-sm btn-rounded" (click)="updateProduto(produto)" (click)="produto.isEditable=!produto.isEditable" *ngIf="produto.isEditable">
-                    Salvar
-                </button>
-                <button type="submit" class="btn btn-link btn-sm btn-rounded" (click)="deleteProduto(produto.id)">
-                    Remover
-                </button>
+                <td><input type="text" [(ngModel)]="produto.nomeProduto" [disabled]="!produto.isEditable"></td>
+                <td><input type="text" [(ngModel)]="produto.fornecedor" [disabled]="!produto.isEditable"></td>
+                <td><input type="text" [(ngModel)]="produto.valorProduto" [disabled]="!produto.isEditable"></td>
+                <td>
+                    <button class="secondary button" (click)="produto.isEditable=!produto.isEditable"
+                        *ngIf="!produto.isEditable">Editar</button>
+                    <button class="secondary button" (click)="produto.isEditable=!produto.isEditable"
+                        *ngIf="produto.isEditable">Cancelar</button>
+                    <button type="submit" class="secondary button" (click)="updateProduto(produto)"
+                        (click)="produto.isEditable=!produto.isEditable" *ngIf="produto.isEditable">
+                        Salvar
+                    </button>
+                    <button type="submit" class="secondary button" (click)="deleteProduto(produto.id)">
+                        Remover
+                    </button>
+                </td>
             </tr>
         </tbody>
     </table>
 </div>
-

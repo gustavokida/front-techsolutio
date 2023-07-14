@@ -28,8 +28,7 @@ export class TesteCadastroComponent implements OnInit{
     this.testeService.createProduto(produto)
     .subscribe(
       (res:Produto) => {
-        this.newProduto = res;
-        console.log(this.newProduto)
+        console.log(res)
     });
   }
 

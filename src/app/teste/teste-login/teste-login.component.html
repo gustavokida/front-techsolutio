@@ -1,17 +1,24 @@
-<div>
-    <form #usuarioform = "ngForm" (ngSubmit) = "logarUsuario(usuarioform)">
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="floatingInput" placeholder="Username" [(ngModel)]="newUsuario.username" name = "username">
-            <label for="floatingInput">Username</label>
-        </div>
-        <div class="form-floating mb-3">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" [(ngModel)]="newUsuario.password" name = "password" >
-            <label for="floatingPassword">Password</label>
-        </div>
-        <div class="d-grid">
-            <button class="btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2" type="submit">entrar</button>
-            <button class="btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2" type="button" (click)="criarUsuario(usuarioform)">Criar conta</button>
-
+<div class="container">
+    <form class="form fields" #usuarioform="ngForm" (ngSubmit)="logarUsuario(usuarioform)">
+        <div>
+            <div>
+                <div>
+                    <input type="text" id="floatingInput" placeholder="Username" [(ngModel)]="newUsuario.username"
+                        name="username">
+                    <label for="floatingInput"></label>
+                </div>
+                <div>
+                    <input type="password" id="floatingPassword" placeholder="Password"
+                        [(ngModel)]="newUsuario.password" name="password">
+                    <label for="floatingPassword"></label>
+                </div>
+            </div>
+            <div>
+                <button type="submit">Entrar</button>
+            </div>
+            <div>
+                <button type="button" (click)="criarUsuario(usuarioform)">Criar conta</button>
+            </div>
         </div>
     </form>
 </div>
